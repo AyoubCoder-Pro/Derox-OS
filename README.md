@@ -36,6 +36,17 @@ The ISO targets 64-bit (amd64) PCs. Hardware compatibility and performance still
 
 DEROX OS 1.0 is an initial release candidate for testing and feedback, not a claim of production-grade stability. Please report bugs and hardware compatibility results through GitHub Issues.
 
+## Contributing
+
+DEROX OS is an open-source community project. Everyone is welcome to inspect the source, fork the repository, modify their own copy, and propose improvements.
+
+1. Fork this repository on GitHub.
+2. Create a branch for your change.
+3. Test your change and describe what you changed.
+4. Open a Pull Request so the maintainers can review it.
+
+You do not need write access to the original repository to contribute. Please open an Issue first for large changes or new features. Be respectful, explain your changes clearly, and do not include files or software that you do not have permission to redistribute.
+
 ## License
 
-MIT
+The original DEROX OS project files are licensed under the MIT License; see [LICENSE](LICENSE). Components included in the distribution (such as Debian packages, firmware, fonts, and other third-party software) remain under their own respective licenses. The DEROX name and logo are not automatically granted for use as someone else's project branding.
