@@ -6,7 +6,7 @@ on:
     paths:
       - "iso/**"
 
-# Prevent two version bumps from calculating the same next version.
+# Serialize version changes for the main branch.
 concurrency:
   group: derox-version-bump-main
   cancel-in-progress: false
@@ -42,16 +42,37 @@ jobs:
           echo "version=$next" >> "$GITHUB_OUTPUT"
 
       - name: Commit version update safely
+        env:
+          NEXT_VERSION: ${{ steps.version.outputs.version }}
+        shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add VERSION
-          git commit -m "Release DEROX OS v${{ steps.version.outputs.version }}"
-          # Rebase the version commit on the latest main before pushing.
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+          git commit -m "Release DEROX OS v${NEXT_VERSION}"
+
+          # Retry if another workflow updates main between fetch and push.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+
+            # Another queued run may already have published this same version.
+            if [[ "$(git rev-parse HEAD)" == "$(git rev-parse origin/main)" ]]; then
+              echo "Version v${NEXT_VERSION} is already present on main."
+              break
+            fi
+
+            if git push origin HEAD:main; then
+              break
+            fi
+
+            if [[ "$attempt" -eq 5 ]]; then
+              echo "Could not push version update after 5 attempts." >&2
+              exit 1
+            fi
+            echo "main moved during push; retrying (attempt $((attempt + 1))/5)."
+          done
 
       - name: Start ISO build for this version
         env:
