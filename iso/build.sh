@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+# Always run live-build from this script\x27s directory, regardless of caller location.
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
 # DEROX OS live image: Debian 12 + XFCE4.
 # Embed the repository release version in the installed system.
 version_file="../VERSION"
