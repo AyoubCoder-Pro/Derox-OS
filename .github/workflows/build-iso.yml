@@ -1,10 +1,10 @@
-name: Build DEROX OS 1.0 ISO
+name: Build DEROX OS ISO
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "iso/**"
+      - "VERSION"
       - ".github/workflows/build-iso.yml"
 
 permissions:
@@ -36,7 +36,8 @@ jobs:
         run: |
           mkdir -p output
           test -f iso/live-image-amd64.hybrid.iso
-          VERSION="$(cat VERSION)"\n          cp iso/live-image-amd64.hybrid.iso "output/DEROX-OS-v${VERSION}-amd64.iso"
+          VERSION="$(cat VERSION)"
+          cp iso/live-image-amd64.hybrid.iso "output/DEROX-OS-v${VERSION}-amd64.iso"
           sha256sum output/*.iso > output/SHA256SUMS.txt
 
       - name: Upload ISO artifact
