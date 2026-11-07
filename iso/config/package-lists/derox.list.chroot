@@ -1,0 +1,19 @@
+# Desktop and hardware basics
+task-xfce-desktop
+lightdm
+network-manager
+network-manager-gnome
+dbus-x11
+# Browser and useful tools
+firefox-esr
+sudo
+git
+curl
+wget
+nano
+htop
+neofetch
+# Fonts and archive support
+fonts-dejavu
+fonts-noto-core
+file-roller
