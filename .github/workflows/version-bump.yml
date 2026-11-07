@@ -6,6 +6,11 @@ on:
     paths:
       - "iso/**"
 
+# Prevent two version bumps from calculating the same next version.
+concurrency:
+  group: derox-version-bump-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
   actions: write
@@ -36,13 +41,17 @@ jobs:
           printf '%s\n' "$next" > VERSION
           echo "version=$next" >> "$GITHUB_OUTPUT"
 
-      - name: Commit version update
+      - name: Commit version update safely
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add VERSION
           git commit -m "Release DEROX OS v${{ steps.version.outputs.version }}"
-          git push
+          # Rebase the version commit on the latest main before pushing.
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
 
       - name: Start ISO build for this version
         env:
