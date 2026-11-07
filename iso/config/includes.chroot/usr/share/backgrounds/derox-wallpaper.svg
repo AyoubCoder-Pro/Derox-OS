@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#020611"/><stop offset=".55" stop-color="#07132b"/><stop offset="1" stop-color="#02040d"/></linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf6ff"/><stop offset=".45" stop-color="#53baff"/><stop offset="1" stop-color="#075cff"/></linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="45"/></filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <circle cx="960" cy="470" r="310" fill="#006bff" opacity=".12" filter="url(#soft)"/>
+  <g fill="none" stroke="#087dff" stroke-width="3" opacity=".65">
+    <path d="M-80 250 C260 520 450 420 680 520 S1120 780 1450 550 1800 360 2020 510"/>
+    <path d="M-80 310 C260 580 450 480 680 580 S1120 840 1450 610 1800 420 2020 570" opacity=".35"/>
+    <path d="M-80 850 C300 620 480 780 740 850 S1250 1000 1600 760 1850 690 2020 730" opacity=".55"/>
+  </g>
+  <g transform="translate(960 360)" filter="url(#glow)" fill="none" stroke="url(#blue)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-5 145 C-145 90 -205 -55 -105 -155 C-45 -215 45 -208 95 -145 C55 -154 20 -132 12 -100 C75 -126 130 -98 145 -45 C115 -60 88 -55 70 -32 C125 -25 145 20 126 58 C110 35 86 30 62 42 C40 92 0 120 -5 145Z"/>
+    <path d="M-115 -118 L-210 -210 L-180 -90 M-58 -155 L-88 -270 L-20 -185 M-5 -148 L20 -265 L55 -170"/>
+    <path d="M95 -52 L165 -25 L110 8" stroke-width="10"/>
+  </g>
+  <text x="960" y="665" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="118" font-weight="700" letter-spacing="5" fill="#eaf4ff">DEROX <tspan fill="#19a4ff" filter="url(#glow)">OS</tspan></text>
+  <path d="M510 720 H1410" stroke="#168dff" stroke-width="3" filter="url(#glow)"/>
+  <text x="960" y="785" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="28" letter-spacing="12" fill="#b8cce8">LIGHT  •  FAST  •  POWERFUL</text>
+  <text x="1830" y="72" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="23" fill="#8da6c9">DEBIAN 12  •  XFCE</text>
+</svg>
