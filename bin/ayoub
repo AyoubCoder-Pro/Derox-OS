@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 CYAN='\033[38;5;117m'
+BLUE='\033[38;5;75m'
 RESET='\033[0m'
 case "${1:-}" in
   -h|--help)
@@ -15,17 +16,38 @@ case "${1:-}" in
       |:_/ |
      //   \\
     (|     | )
-   /'\\_   _/`\\
+   /'\\_   _/\\
    \\___)=(___/
 LOGO
     printf '%b\n' "$RESET"
     if command -v fastfetch >/dev/null 2>&1; then
       fastfetch
-    else
-      printf 'Host: %s\n' "$(hostname 2>/dev/null || printf 'unknown')"
-      printf 'Kernel: %s\n' "$(uname -sr 2>/dev/null || printf 'unknown')"
-      printf 'Install Fastfetch for the full system dashboard.\n'
+      exit 0
     fi
+    os_name='Linux'
+    if [[ -r /etc/os-release ]]; then
+      . /etc/os-release
+      os_name="${PRETTY_NAME:-Linux}"
+    fi
+    cpu_name="$(awk -F: '/model name/ {sub(/^[ \t]+/, "", $2); print $2; exit}' /proc/cpuinfo 2>/dev/null || true)"
+    [[ -n "$cpu_name" ]] || cpu_name='Unknown'
+    mem_total="$(awk '/MemTotal:/ {printf "%.1f GiB", $2/1024/1024}' /proc/meminfo 2>/dev/null || true)"
+    mem_available="$(awk '/MemAvailable:/ {printf "%.1f GiB", $2/1024/1024}' /proc/meminfo 2>/dev/null || true)"
+    [[ -n "$mem_total" ]] || mem_total='Unknown'
+    [[ -n "$mem_available" ]] || mem_available='Unknown'
+    disk_info="$(df -h "$HOME" 2>/dev/null | awk 'NR==2 {printf "%s used / %s total (%s)", $3, $2, $5}')"
+    [[ -n "$disk_info" ]] || disk_info='Unknown'
+    uptime_text="$(uptime -p 2>/dev/null || true)"
+    [[ -n "$uptime_text" ]] || uptime_text='Unknown'
+    printf '%b%-12s%b %s\n' "$BLUE" 'OS' "$RESET" "$os_name"
+    printf '%b%-12s%b %s\n' "$BLUE" 'Host' "$RESET" "$(hostname 2>/dev/null || printf 'Unknown')"
+    printf '%b%-12s%b %s\n' "$BLUE" 'Kernel' "$RESET" "$(uname -sr 2>/dev/null || printf 'Unknown')"
+    printf '%b%-12s%b %s\n' "$BLUE" 'Architecture' "$RESET" "$(uname -m 2>/dev/null || printf 'Unknown')"
+    printf '%b%-12s%b %s\n' "$BLUE" 'CPU' "$RESET" "$cpu_name"
+    printf '%b%-12s%b %s total, %s available\n' "$BLUE" 'Memory' "$RESET" "$mem_total" "$mem_available"
+    printf '%b%-12s%b %s\n' "$BLUE" 'Disk' "$RESET" "$disk_info"
+    printf '%b%-12s%b %s\n' "$BLUE" 'Uptime' "$RESET" "$uptime_text"
+    printf '\nFastfetch is optional. This built-in dashboard works without it.\n'
     ;;
   *)
     printf 'Unknown option: %s\n' "$1" >&2
