@@ -32,10 +32,12 @@ case "${1:-}" in
       |____/|_____|_| \\_\\____(_)
 LOGO
     printf '%b\n' "$RESET"
+    version='unknown'
+    [[ -r /etc/derox-version ]] && version="$(cat /etc/derox-version)"
     os_name='Linux'
     if [[ -r /etc/os-release ]]; then
       . /etc/os-release
-      os_name="${PRETTY_NAME:-Linux}"
+      os_name="DEROX OS v${version} (Debian 12 Bookworm)"
     fi
     cpu_name="$(awk -F: '/model name/ {sub(/^[ \t]+/, "", $2); print $2; exit}' /proc/cpuinfo 2>/dev/null || true)"
     [[ -n "$cpu_name" ]] || cpu_name='Unknown'
@@ -68,7 +70,7 @@ if ! grep -q 'DEROX OS welcome' /etc/skel/.bashrc; then
 # DEROX OS welcome
 if [[ $- == *i* ]] && [[ -z "${DEROX_WELCOME_SHOWN:-}" ]]; then
   export DEROX_WELCOME_SHOWN=1
-  printf '\033[38;5;117mWelcome to DEROX OS 1.0! Type derox for system information.\033[0m\n'
+  printf '\033[38;5;117mWelcome to DEROX OS! Type derox for system information.\033[0m\n'
 fi
 EOF
 fi
