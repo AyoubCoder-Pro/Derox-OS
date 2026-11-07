@@ -39,7 +39,11 @@ jobs:
           VERSION="$(cat VERSION)"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           cp iso/live-image-amd64.hybrid.iso "output/DEROX-OS-v${VERSION}-amd64.iso"
-          sha256sum output/*.iso > output/SHA256SUMS.txt
+          # GitHub Releases rejects individual assets >= 2 GiB.
+          # Compress the ISO so it can be published as a single downloadable asset.
+          xz -T0 -6 "output/DEROX-OS-v${VERSION}-amd64.iso"
+          test "$(stat -c%s "output/DEROX-OS-v${VERSION}-amd64.iso.xz")" -lt 2147483648
+          sha256sum output/*.iso.xz > output/SHA256SUMS.txt
 
 
       - name: Publish direct ISO download as a testing release
@@ -51,7 +55,7 @@ jobs:
           make_latest: false
           overwrite_files: true
           files: |
-            output/*.iso
+            output/*.iso.xz
             output/SHA256SUMS.txt
 
       - name: Upload ISO artifact
