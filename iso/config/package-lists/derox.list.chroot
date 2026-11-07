@@ -4,6 +4,22 @@ lightdm
 network-manager
 network-manager-gnome
 dbus-x11
+rfkill
+
+# Wi-Fi and Bluetooth support
+bluez
+blueman
+libspa-0.2-bluetooth
+
+# Common wireless firmware (hardware support varies by device)
+firmware-linux
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-brcm80211
+firmware-mediatek
+firmware-misc-nonfree
+
 # Browser and useful tools
 firefox-esr
 sudo
@@ -13,6 +29,7 @@ wget
 nano
 htop
 neofetch
+
 # Fonts and archive support
 fonts-dejavu
 fonts-noto-core
