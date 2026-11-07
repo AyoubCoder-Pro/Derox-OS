@@ -5,7 +5,7 @@ install -d -m 0755 /usr/local/share/derox-os
 install -d -m 0755 /etc/skel/.config/autostart
 
 cat > /usr/local/share/derox-os/README.txt <<'EOF'
-DEROX OS 1.0
+DEROX OS
 An independent Debian 12 live system with XFCE4.
 Terminal command: derox
 This is a community project, not an official Debian release.
@@ -19,10 +19,12 @@ BLUE='\033[38;5;75m'
 RESET='\033[0m'
 case "${1:-}" in
   -h|--help)
-    printf 'DEROX OS 1.0 commands\n  derox       Show system dashboard\n  derox -h    Show help\n'
+    printf 'DEROX OS commands\n  derox       Show system dashboard\n  derox -h    Show help\n'
     exit 0
     ;;
   "")
+    version="unknown"
+    [[ -r /etc/derox-version ]] && version="$(cat /etc/derox-version)"
     printf '%b' "$CYAN"
     cat <<'LOGO'
        ____  _____ ____   ____  __
@@ -53,7 +55,7 @@ LOGO
     printf '%b%-12s%b %s\n' "$BLUE" 'Architecture' "$RESET" "$(uname -m 2>/dev/null || printf 'Unknown')"
     printf '%b%-12s%b %s total, %s available\n' "$BLUE" 'Memory' "$RESET" "$mem_total" "$mem_available"
     printf '%b%-12s%b %s\n' "$BLUE" 'Disk' "$RESET" "$disk_info"
-    printf '\nWelcome to DEROX OS 1.0!\n'
+    printf '\nWelcome to DEROX OS v%s!\n' "$version"
     ;;
   *)
     printf 'Unknown option: %s\n' "$1" >&2
