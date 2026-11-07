@@ -14,31 +14,29 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    container:
-      image: debian:bookworm
     steps:
-      - name: Install tools
-        run: |
-          apt-get update
-          apt-get install -y live-build debootstrap squashfs-tools xorriso ca-certificates git
-
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Configure image
+      - name: Build ISO in privileged Debian container
         run: |
-          chmod +x iso/build.sh iso/config/hooks/live/0100-ayoub.hook.chroot
-          cd iso
-          ./build.sh
-
-      - name: Build ISO
-        run: |
-          cd iso
-          lb build
+          docker run --privileged --rm \
+            -v "${GITHUB_WORKSPACE}:/work" \
+            -w /work/iso \
+            debian:bookworm \
+            bash -lc '
+              set -Eeuo pipefail
+              apt-get update
+              apt-get install -y live-build debootstrap squashfs-tools xorriso ca-certificates
+              chmod +x build.sh config/hooks/live/0100-ayoub.hook.chroot
+              ./build.sh
+              lb build
+            '
 
       - name: Prepare artifact
         run: |
           mkdir -p output
+          test -f iso/live-image-amd64.hybrid.iso
           cp iso/live-image-amd64.hybrid.iso output/ayoub-os-debian12-xfce-amd64.iso
           sha256sum output/*.iso > output/SHA256SUMS.txt
 
