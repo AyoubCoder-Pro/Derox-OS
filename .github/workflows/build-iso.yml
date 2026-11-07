@@ -1,4 +1,4 @@
-name: Build AYOUB OS ISO
+name: Build DEROX OS 1.0 ISO
 
 on:
   workflow_dispatch:
@@ -37,13 +37,13 @@ jobs:
         run: |
           mkdir -p output
           test -f iso/live-image-amd64.hybrid.iso
-          cp iso/live-image-amd64.hybrid.iso output/ayoub-os-debian12-xfce-amd64.iso
+          cp iso/live-image-amd64.hybrid.iso output/derox-os-1.0-debian12-xfce4-amd64.iso
           sha256sum output/*.iso > output/SHA256SUMS.txt
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ayoub-os-iso
+          name: derox-os-iso
           path: output/*
           if-no-files-found: error
           retention-days: 14
