@@ -14,5 +14,5 @@ lb config \
   --bootappend-live "boot=live components username=derox hostname=derox-os locales=en_US.UTF-8 keyboard-layouts=us" \
   --debian-installer none \
   --iso-application "DEROX OS 1.0" \
-  --iso-volume "DEROX_OS_1.0" \
+  --iso-volume "DEROX_OS_10" \
   --apt-recommends true
