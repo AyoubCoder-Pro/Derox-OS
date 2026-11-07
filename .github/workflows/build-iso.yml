@@ -32,19 +32,50 @@ jobs:
               lb build
             '
 
-      - name: Prepare artifact
+      - name: Prepare split download
         run: |
+          set -Eeuo pipefail
           mkdir -p output
           test -f iso/live-image-amd64.hybrid.iso
           VERSION="$(cat VERSION)"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
-          cp iso/live-image-amd64.hybrid.iso "output/DEROX-OS-v${VERSION}-amd64.iso"
-          # GitHub Releases rejects individual assets >= 2 GiB.
-          # Compress the ISO so it can be published as a single downloadable asset.
-          xz -T0 -6 "output/DEROX-OS-v${VERSION}-amd64.iso"
-          test "$(stat -c%s "output/DEROX-OS-v${VERSION}-amd64.iso.xz")" -lt 2147483648
-          sha256sum output/*.iso.xz > output/SHA256SUMS.txt
 
+          ISO="output/DEROX-OS-v${VERSION}-amd64.iso"
+          ARCHIVE="${ISO}.xz"
+          cp iso/live-image-amd64.hybrid.iso "$ISO"
+
+          # Compress, then split into release assets safely below GitHub's 2 GiB limit.
+          xz -T0 -6 "$ISO"
+          split -b 1900M -d -a 3 "$ARCHIVE" "${ARCHIVE}.part-"
+          rm "$ARCHIVE"
+
+          test -n "$(find output -maxdepth 1 -type f -name '*.iso.xz.part-*' -print -quit)"
+          sha256sum output/*.iso.xz.part-* > output/SHA256SUMS.txt
+
+          cat > output/README-DOWNLOAD.txt <<EOF
+          DEROX OS v${VERSION} — ISO download
+
+          The compressed ISO is split into numbered parts because GitHub Releases
+          has a per-file size limit. Download EVERY .part- file into the same folder.
+
+          Windows PowerShell:
+            $parts = Get-ChildItem .\DEROX-OS-v${VERSION}-amd64.iso.xz.part-* | Sort-Object Name
+            $out = [IO.File]::Create("DEROX-OS-v${VERSION}-amd64.iso.xz")
+            foreach ($part in $parts) {
+              $input = [IO.File]::OpenRead($part.FullName)
+              $input.CopyTo($out)
+              $input.Dispose()
+            }
+            $out.Dispose()
+
+          Linux:
+            cat DEROX-OS-v${VERSION}-amd64.iso.xz.part-* > DEROX-OS-v${VERSION}-amd64.iso.xz
+
+          After joining the parts, extract the .xz file with 7-Zip (Windows)
+          or run: xz -d DEROX-OS-v${VERSION}-amd64.iso.xz
+
+          Verify downloaded parts with SHA256SUMS.txt before joining them.
+          EOF
 
       - name: Publish direct ISO download as a testing release
         uses: softprops/action-gh-release@v2
@@ -55,8 +86,9 @@ jobs:
           make_latest: false
           overwrite_files: true
           files: |
-            output/*.iso.xz
+            output/*.iso.xz.part-*
             output/SHA256SUMS.txt
+            output/README-DOWNLOAD.txt
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
