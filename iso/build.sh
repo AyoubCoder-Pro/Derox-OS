@@ -4,6 +4,11 @@ set -Eeuo pipefail
 # AYOUB OS live image: lightweight Debian 12 + XFCE.
 lb config \
   --distribution bookworm \
+  --mirror-bootstrap "http://deb.debian.org/debian/" \
+  --mirror-chroot "http://deb.debian.org/debian/" \
+  --mirror-chroot-security "http://security.debian.org/debian-security/" \
+  --mirror-binary "http://deb.debian.org/debian/" \
+  --mirror-binary-security "http://security.debian.org/debian-security/" \
   --archive-areas "main contrib non-free-firmware" \
   --binary-images iso-hybrid \
   --bootappend-live "boot=live components username=ayoub hostname=ayoub-os locales=en_US.UTF-8 keyboard-layouts=us" \
