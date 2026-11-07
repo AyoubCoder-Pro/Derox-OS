@@ -25,7 +25,7 @@ jobs:
 
       - name: Configure image
         run: |
-          chmod +x iso/build.sh
+          chmod +x iso/build.sh iso/config/hooks/live/0100-ayoub.hook.chroot
           cd iso
           sudo ./build.sh
 
