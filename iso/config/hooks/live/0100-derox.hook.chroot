@@ -77,6 +77,34 @@ fi
 EOF
 fi
 
+# Apply the DEROX dark neon wallpaper and a clean desktop with one installer icon.
+install -d -m 0755 /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
+cat > /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<channel name="xfce4-desktop" version="1.0">
+  <property name="backdrop" type="empty">
+    <property name="screen0" type="empty">
+      <property name="monitor0" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/usr/share/backgrounds/derox-wallpaper.svg"/>
+          <property name="image-style" type="int" value="5"/>
+        </property>
+      </property>
+    </property>
+  </property>
+  <property name="desktop-icons" type="empty">
+    <property name="style" type="int" value="2"/>
+    <property name="icon-size" type="int" value="48"/>
+    <property name="file-icons" type="empty">
+      <property name="show-home" type="bool" value="false"/>
+      <property name="show-filesystem" type="bool" value="false"/>
+      <property name="show-trash" type="bool" value="false"/>
+      <property name="show-removable" type="bool" value="false"/>
+    </property>
+  </property>
+</channel>
+EOF
+
 # Give the installer DEROX branding in the application menu and live desktop.
 install -d -m 0755 /usr/share/applications /etc/skel/Desktop
 cat > /usr/share/applications/debian-installer-launcher.desktop <<'EOF'
