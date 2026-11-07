@@ -5,7 +5,6 @@ on:
   push:
     paths:
       - "iso/**"
-      - "bin/ayoub"
       - ".github/workflows/build-iso.yml"
 
 permissions:
@@ -28,7 +27,7 @@ jobs:
               set -Eeuo pipefail
               apt-get update
               apt-get install -y live-build debootstrap squashfs-tools xorriso ca-certificates
-              chmod +x build.sh config/hooks/live/0100-ayoub.hook.chroot
+              chmod +x build.sh config/hooks/live/0100-derox.hook.chroot
               ./build.sh
               lb build
             '
@@ -37,7 +36,7 @@ jobs:
         run: |
           mkdir -p output
           test -f iso/live-image-amd64.hybrid.iso
-          cp iso/live-image-amd64.hybrid.iso output/derox-os-1.0-debian12-xfce4-amd64.iso
+          cp iso/live-image-amd64.hybrid.iso output/DEROX-OS-1.0-amd64.iso
           sha256sum output/*.iso > output/SHA256SUMS.txt
 
       - name: Upload ISO artifact
