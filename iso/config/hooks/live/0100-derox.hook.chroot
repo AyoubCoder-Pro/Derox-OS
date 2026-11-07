@@ -77,6 +77,23 @@ fi
 EOF
 fi
 
+# Give the installer DEROX branding in the application menu and live desktop.
+install -d -m 0755 /usr/share/applications /etc/skel/Desktop
+cat > /usr/share/applications/debian-installer-launcher.desktop <<'EOF'
+[Desktop Entry]
+Version=1.0
+Name=Install DEROX OS
+Comment=Install DEROX OS permanently to your computer
+Exec=su-to-root -X -c /usr/sbin/debian-installer-launcher
+TryExec=/usr/sbin/debian-installer-launcher
+Icon=debian-installer-launcher
+Type=Application
+Categories=System;
+StartupNotify=true
+Terminal=false
+EOF
+install -m 0755 /usr/share/applications/debian-installer-launcher.desktop "/etc/skel/Desktop/Install DEROX OS.desktop"
+
 # Enable networking and Bluetooth automatically in the live session.
 if command -v systemctl >/dev/null 2>&1; then
   systemctl enable NetworkManager.service
