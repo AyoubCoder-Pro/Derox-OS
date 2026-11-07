@@ -72,3 +72,9 @@ if [[ $- == *i* ]] && [[ -z "${DEROX_WELCOME_SHOWN:-}" ]]; then
 fi
 EOF
 fi
+
+# Enable networking and Bluetooth automatically in the live session.
+if command -v systemctl >/dev/null 2>&1; then
+  systemctl enable NetworkManager.service
+  systemctl enable bluetooth.service
+fi
