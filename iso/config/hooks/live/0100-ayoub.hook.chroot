@@ -1,17 +1,17 @@
 #!/bin/sh
 set -e
 
-install -d -m 0755 /usr/local/share/ayoub-os
+install -d -m 0755 /usr/local/share/derox-os
 install -d -m 0755 /etc/skel/.config/autostart
 
-cat > /usr/local/share/ayoub-os/README.txt <<'EOF'
-AYOUB OS
-A lightweight Debian 12 live system with XFCE.
-Terminal command: ayoub
-This is a community/personal project, not an official Debian release.
+cat > /usr/local/share/derox-os/README.txt <<'EOF'
+DEROX OS 1.0
+An independent Debian 12 live system with XFCE4.
+Terminal command: derox
+This is a community project, not an official Debian release.
 EOF
 
-cat > /usr/local/bin/ayoub <<'EOF'
+cat > /usr/local/bin/derox <<'EOF'
 #!/usr/bin/env bash
 set -Eeuo pipefail
 CYAN='\033[38;5;117m'
@@ -19,19 +19,17 @@ BLUE='\033[38;5;75m'
 RESET='\033[0m'
 case "${1:-}" in
   -h|--help)
-    printf 'AYOUB OS commands\n  ayoub       Show system dashboard\n  ayoub -h    Show help\n'
+    printf 'DEROX OS 1.0 commands\n  derox       Show system dashboard\n  derox -h    Show help\n'
     exit 0
     ;;
   "")
     printf '%b' "$CYAN"
     cat <<'LOGO'
-       .--.
-      |o_o |
-      |:_/ |
-     //   \\
-    (|     | )
-   /'\\_   _/\\
-   \\___)=(___/
+       ____  _____ ____   ____  __
+      |  _ \\| ____|  _ \\ / ___|/ /
+      | | | |  _| | |_) | |   / /
+      | |_| | |___|  _ <| |__/_/
+      |____/|_____|_| \\_\\____(_)
 LOGO
     printf '%b\n' "$RESET"
     os_name='Linux'
@@ -54,7 +52,7 @@ LOGO
     printf '%b%-12s%b %s\n' "$BLUE" 'CPU' "$RESET" "$cpu_name"
     printf '%b%-12s%b %s total, %s available\n' "$BLUE" 'Memory' "$RESET" "$mem_total" "$mem_available"
     printf '%b%-12s%b %s\n' "$BLUE" 'Disk' "$RESET" "$disk_info"
-    printf '\nWelcome to AYOUB OS!\n'
+    printf '\nWelcome to DEROX OS 1.0!\n'
     ;;
   *)
     printf 'Unknown option: %s\n' "$1" >&2
@@ -62,16 +60,16 @@ LOGO
     ;;
 esac
 EOF
-chmod 0755 /usr/local/bin/ayoub
+chmod 0755 /usr/local/bin/derox
 
 # Show a small, non-intrusive welcome message in new interactive Bash shells.
-if ! grep -q 'AYOUB OS welcome' /etc/skel/.bashrc; then
+if ! grep -q 'DEROX OS welcome' /etc/skel/.bashrc; then
   cat >> /etc/skel/.bashrc <<'EOF'
 
-# AYOUB OS welcome
-if [[ $- == *i* ]] && [[ -z "${AYOUB_WELCOME_SHOWN:-}" ]]; then
-  export AYOUB_WELCOME_SHOWN=1
-  printf '\033[38;5;117mWelcome to AYOUB OS! Type ayoub for system information.\033[0m\n'
+# DEROX OS welcome
+if [[ $- == *i* ]] && [[ -z "${DEROX_WELCOME_SHOWN:-}" ]]; then
+  export DEROX_WELCOME_SHOWN=1
+  printf '\033[38;5;117mWelcome to DEROX OS 1.0! Type derox for system information.\033[0m\n'
 fi
 EOF
 fi
