@@ -59,14 +59,14 @@ jobs:
           has a per-file size limit. Download EVERY .part- file into the same folder.
 
           Windows PowerShell:
-            $parts = Get-ChildItem .\DEROX-OS-v${VERSION}-amd64.iso.xz.part-* | Sort-Object Name
-            $out = [IO.File]::Create("DEROX-OS-v${VERSION}-amd64.iso.xz")
-            foreach ($part in $parts) {
-              $input = [IO.File]::OpenRead($part.FullName)
-              $input.CopyTo($out)
-              $input.Dispose()
+            \$parts = Get-ChildItem .\DEROX-OS-v${VERSION}-amd64.iso.xz.part-* | Sort-Object Name
+            \$out = [IO.File]::Create("DEROX-OS-v${VERSION}-amd64.iso.xz")
+            foreach (\$part in \$parts) {
+              \$input = [IO.File]::OpenRead(\$part.FullName)
+              \$input.CopyTo(\$out)
+              \$input.Dispose()
             }
-            $out.Dispose()
+            \$out.Dispose()
 
           Linux:
             cat DEROX-OS-v${VERSION}-amd64.iso.xz.part-* > DEROX-OS-v${VERSION}-amd64.iso.xz
