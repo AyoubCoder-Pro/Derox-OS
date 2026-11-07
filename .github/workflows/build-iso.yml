@@ -37,6 +37,7 @@ jobs:
           mkdir -p output
           test -f iso/live-image-amd64.hybrid.iso
           VERSION="$(cat VERSION)"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           cp iso/live-image-amd64.hybrid.iso "output/DEROX-OS-v${VERSION}-amd64.iso"
           sha256sum output/*.iso > output/SHA256SUMS.txt
 
