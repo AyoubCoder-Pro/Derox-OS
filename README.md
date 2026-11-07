@@ -1,46 +1,40 @@
-# AYOUB OS
+# DEROX OS 1.0
 
-A personal Ubuntu/Linux terminal identity with a light-cyan ASCII logo and Fastfetch system dashboard.
+**A Linux distribution for everyone.**
 
-This project customizes an existing Ubuntu/Debian-based Linux environment. It does not replace the operating system or repartition your disk.
+DEROX OS is an independent Debian-based live Linux project, built around Debian 12 (Bookworm) and the XFCE4 desktop. Version 1.0 is the first development release of the DEROX identity and live system.
 
-## Features
+> DEROX OS is an independent community project and is not affiliated with or endorsed by the Debian project.
 
-- Light-cyan AYOUB OS ASCII logo
-- Fastfetch dashboard: OS, kernel, shell, terminal, CPU, and memory
-- ayoub command to display the branded dashboard
-- Optional Fastfetch installation on Ubuntu/Debian
-- Safe setup: backs up .bashrc before adding the startup banner
+## Version 1.0
 
-## Install
+- Debian 12 Bookworm base
+- XFCE4 desktop environment
+- amd64 / x86_64 hybrid live ISO
+- LightDM login manager
+- NetworkManager for network connections
+- Firefox ESR and useful system tools
+- DEROX OS welcome branding and `derox` terminal command
 
-Clone the repository, enter its folder, and run:
+## Build and download
 
-    git clone https://github.com/AyoubCoder-Pro/Ayoub-OS.git
-    cd Ayoub-OS
-    bash install.sh
+The ISO is built with GitHub Actions:
 
-The installer may ask whether you want to install Fastfetch using apt. If you decline, the basic AYOUB OS banner still works.
+1. Open the repository's **Actions** tab.
+2. Select **Build DEROX OS 1.0 ISO**.
+3. Run the workflow, or open the latest successful run.
+4. Download the `derox-os-iso` artifact and extract the ZIP file.
+5. Verify the ISO with the included SHA-256 checksum file.
 
-Open a new terminal, or run source ~/.bashrc, then use:
+## Try it safely
 
-    ayoub
+Test the live ISO in a virtual machine or boot it as a live USB before considering installation. Creating a bootable USB erases the USB drive, so back up its files first. The current image is a live system; it is not yet a full disk installer.
 
-## Files
+The ISO targets 64-bit (amd64) PCs. Hardware compatibility and performance still need testing on a range of computers.
 
-- install.sh — installs the terminal profile and command
-- bin/ayoub — branded dashboard command
-- fastfetch/config.jsonc — Fastfetch configuration
-- fastfetch/ayoub.txt — ASCII logo
+## Project status
 
-## Uninstall
-
-Remove the AYOUB OS block between the marker comments from ~/.bashrc, then remove:
-
-    rm -f ~/.local/bin/ayoub
-    rm -rf ~/.config/fastfetch
-
-The installer creates a timestamped .bashrc.ayoub-os-backup.* backup before changing the shell startup file.
+DEROX OS 1.0 is an initial release candidate for testing and feedback, not a claim of production-grade stability. Please report bugs and hardware compatibility results through GitHub Issues.
 
 ## License
 
