@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# DEROX OS 1.0 live image: Debian 12 + XFCE4.
+# DEROX OS live image: Debian 12 + XFCE4.\n# Embed the repository release version in the installed system.\nversion_file="../VERSION"\nif [[ -f "$version_file" ]]; then\n  install -D -m 0644 "$version_file" config/includes.chroot/etc/derox-version\nelse\n  echo "Missing ../VERSION" >&2\n  exit 1\nfi
 lb config \
   --distribution bookworm \
   --mirror-bootstrap "http://deb.debian.org/debian/" \
