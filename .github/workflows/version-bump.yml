@@ -1,0 +1,50 @@
+name: Bump DEROX OS version
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "iso/**"
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Increment patch version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          current="$(tr -d '[:space:]' < VERSION)"
+          if [[ ! "$current" =~ ^([0-9]+)\.([0-9]{2})$ ]]; then
+            echo "VERSION must use MAJOR.MINOR format, for example 1.00" >&2
+            exit 1
+          fi
+          major="${BASH_REMATCH[1]}"
+          minor="${BASH_REMATCH[2]}"
+          next_minor=$((10#$minor + 1))
+          next="$(printf '%s.%02d' "$major" "$next_minor")"
+          printf '%s\n' "$next" > VERSION
+          echo "version=$next" >> "$GITHUB_OUTPUT"
+
+      - name: Commit version update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add VERSION
+          git commit -m "Release DEROX OS v${{ steps.version.outputs.version }}"
+          git push
+
+      - name: Start ISO build for this version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-iso.yml --ref main
