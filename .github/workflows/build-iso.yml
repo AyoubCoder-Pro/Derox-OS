@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p output
           test -f iso/live-image-amd64.hybrid.iso
-          cp iso/live-image-amd64.hybrid.iso output/DEROX-OS-1.0-amd64.iso
+          VERSION="$(cat VERSION)"\n          cp iso/live-image-amd64.hybrid.iso "output/DEROX-OS-v${VERSION}-amd64.iso"
           sha256sum output/*.iso > output/SHA256SUMS.txt
 
       - name: Upload ISO artifact
