@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# AYOUB OS live image: lightweight Debian 12 + XFCE.
+# DEROX OS 1.0 live image: Debian 12 + XFCE4.
 lb config \
   --distribution bookworm \
   --mirror-bootstrap "http://deb.debian.org/debian/" \
@@ -11,8 +11,8 @@ lb config \
   --mirror-binary-security "http://security.debian.org/debian-security/" \
   --archive-areas "main contrib non-free-firmware" \
   --binary-images iso-hybrid \
-  --bootappend-live "boot=live components username=ayoub hostname=ayoub-os locales=en_US.UTF-8 keyboard-layouts=us" \
+  --bootappend-live "boot=live components username=derox hostname=derox-os locales=en_US.UTF-8 keyboard-layouts=us" \
   --debian-installer none \
-  --iso-application "AYOUB OS" \
-  --iso-volume "AYOUB_OS" \
+  --iso-application "DEROX OS 1.0" \
+  --iso-volume "DEROX_OS_1.0" \
   --apt-recommends true
