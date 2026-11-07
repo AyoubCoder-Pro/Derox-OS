@@ -17,7 +17,6 @@ firmware-iwlwifi
 firmware-realtek
 firmware-atheros
 firmware-brcm80211
-firmware-mediatek
 firmware-misc-nonfree
 
 # Browser and useful tools
