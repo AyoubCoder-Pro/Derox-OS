@@ -12,7 +12,7 @@ lb config \
   --archive-areas "main contrib non-free-firmware" \
   --binary-images iso-hybrid \
   --bootappend-live "boot=live components username=derox hostname=derox-os locales=en_US.UTF-8 keyboard-layouts=us" \
-  --debian-installer none \
+  --debian-installer live \
   --iso-application "DEROX OS 1.0" \
   --iso-volume "DEROX_OS_10" \
   --apt-recommends true
