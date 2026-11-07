@@ -19,6 +19,10 @@ firmware-atheros
 firmware-brcm80211
 firmware-misc-nonfree
 
+# Desktop installer
+# Adds an Install DEROX OS launcher to the live XFCE desktop.
+debian-installer-launcher
+
 # Browser and useful tools
 firefox-esr
 sudo
