@@ -33,7 +33,7 @@ curl
 wget
 nano
 htop
-neofetch
+fastfetch
 
 # Fonts and archive support
 fonts-dejavu
