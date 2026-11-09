@@ -25,6 +25,10 @@ menu
 # Adds an Install DEROX OS launcher to the live XFCE desktop.
 debian-installer-launcher
 
+# Boot splash
+plymouth
+plymouth-themes
+
 # Browser and useful tools
 firefox-esr
 sudo
