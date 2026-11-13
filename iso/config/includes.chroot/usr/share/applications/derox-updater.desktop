@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DEROX Updater
+Comment=Update DEROX OS and installed applications
+Exec=python3 /usr/bin/derox-updater
+Icon=system-software-update
+Terminal=false
+Categories=System;Settings;

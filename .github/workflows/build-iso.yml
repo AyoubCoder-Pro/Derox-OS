@@ -5,6 +5,12 @@ on:
   push:
     paths:
       - "VERSION"
+      - "iso/**"
+      - ".github/workflows/build-iso.yml"
+  pull_request:
+    paths:
+      - "VERSION"
+      - "iso/**"
       - ".github/workflows/build-iso.yml"
 
 permissions:
@@ -27,7 +33,7 @@ jobs:
               set -Eeuo pipefail
               apt-get update
               apt-get install -y live-build debootstrap squashfs-tools xorriso ca-certificates
-              chmod +x build.sh config/hooks/live/0100-derox.hook.chroot
+              chmod +x build.sh config/hooks/live/*.hook.chroot
               ./build.sh
               lb build
             '
@@ -78,6 +84,7 @@ jobs:
           EOF
 
       - name: Publish direct ISO download as a testing release
+        if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ env.VERSION }}

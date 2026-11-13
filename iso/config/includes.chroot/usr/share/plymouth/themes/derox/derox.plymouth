@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=DEROX OS
+Description=DEROX OS purple dragon-inspired boot splash
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/derox
+ScriptFile=/usr/share/plymouth/themes/derox/derox.script
