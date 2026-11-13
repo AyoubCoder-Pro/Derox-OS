@@ -20,14 +20,18 @@ firmware-brcm80211
 firmware-misc-nonfree
 
 # Desktop installer
-# Provides su-to-root, used by the Debian Installer desktop launcher.
 menu
-# Adds an Install DEROX OS launcher to the live XFCE desktop.
 debian-installer-launcher
 
 # Boot splash
 plymouth
 plymouth-themes
+
+# DEROX Updater GUI
+python3
+python3-gi
+gir1.2-gtk-3.0
+policykit-1
 
 # Browser and useful tools
 firefox-esr
