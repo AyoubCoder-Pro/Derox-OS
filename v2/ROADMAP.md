@@ -4,6 +4,8 @@ All milestones are planned; none should be marked complete until tested and revi
 
 - [x] Create a separate `derox-2.0` development branch.
 - [x] Record the independent-from-other-distributions goal and initial architecture.
+- [x] Define the first package manifest schema and add a read-only validator with unit tests.
+- [x] Remove the Debian 1.0 ISO workflow and legacy live-build hook from this branch.
 - [ ] Select and pin the LFS/BLFS book revision and x86_64 toolchain inputs.
 - [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
