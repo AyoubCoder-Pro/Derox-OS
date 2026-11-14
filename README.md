@@ -50,3 +50,19 @@ You do not need write access to the original repository to contribute. Please op
 ## License
 
 The original DEROX OS project files are licensed under the MIT License; see [LICENSE](LICENSE). Components included in the distribution (such as Debian packages, firmware, fonts, and other third-party software) remain under their own respective licenses. The DEROX name and logo are not automatically granted for use as someone else's project branding.
+
+
+---
+
+## DEROX OS 2.0 (new independent development track)
+
+The `derox-2.0` branch begins a separate source-built distribution effort. Unlike 1.0, the 2.0 target is **not based on Debian or another Linux distribution**. The proposed foundation is Linux From Scratch, with an upstream Linux kernel, XFCE desktop, and a DEROX-maintained package ecosystem.
+
+This branch is currently architecture/planning work and is **not bootable or installable yet**. The Debian-based 1.0 build workflow is intentionally not carried into this branch.
+
+- [DEROX 2.0 overview](v2/README.md)
+- [Architecture](v2/ARCHITECTURE.md)
+- [DEROX App Manager and package design](v2/APP-MANAGER.md)
+- [Development roadmap](v2/ROADMAP.md)
+
+The `main` branch remains the DEROX OS 1.0 line.
