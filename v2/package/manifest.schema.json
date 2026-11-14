@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://derox-os.example/schemas/package-manifest-v1.json",
+  "title": "DEROX package manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "name", "version", "architecture", "description", "license", "payload"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+.-]{1,63}$" },
+    "version": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "architecture": { "enum": ["x86_64", "any"] },
+    "description": { "type": "string", "maxLength": 512 },
+    "license": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "homepage": { "type": "string", "format": "uri" },
+    "maintainer": { "type": "string", "maxLength": 256 },
+    "dependencies": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "conflicts": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "format", "sha256"],
+      "properties": {
+        "file": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$" },
+        "format": { "const": "tar.zst" },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+      }
+    }
+  }
+}
