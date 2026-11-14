@@ -11,7 +11,7 @@ DEROX OS 2.0 is a new development track. It does not use Debian, Ubuntu, Arch, F
 - Build the base userland from upstream source code using a reproducible toolchain.
 - Use the upstream Linux kernel.
 - Provide an XFCE desktop session.
-- Develop the DEROX package format, signed repository metadata, and package manager.
+- Develop the DEROX package format, signed repository metadata, and package manager. The first manifest schema and read-only validator are now in `package/` and `tools/`.
 - Ship a branded default wallpaper and consistent desktop identity.
 - Keep all 1.0 Debian-based build files and releases unchanged.
 
