@@ -31,3 +31,7 @@ jobs:
         run: python -m unittest -v test_validate_sources.py
       - name: Validate source lock
         run: python v2/tools/validate_sources.py v2/sources/sources.json
+      - name: Check build preflight shell syntax
+        run: bash -n v2/build/host-check.sh
+      - name: Check build preflight help
+        run: bash v2/build/host-check.sh --help
