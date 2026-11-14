@@ -53,3 +53,8 @@ Repository metadata must be signed. The client must verify signatures and hashes
 4. Implement install/remove with a recoverable file database.
 5. Add signed remote repositories and updates.
 6. Build the graphical XFCE application on top of the stable CLI.
+
+
+## Prototype status
+
+The manifest schema and read-only Python validator are the first implemented pieces. The graphical application, dependency solver, package archive reader, transactional installer, repository client, and signing-key lifecycle are not implemented yet. The validator is not a package installer and must never be presented as one.
