@@ -1,40 +1,7 @@
-# DEROX OS 1.0 ISO
+# DEROX OS 2.0 image build status
 
-DEROX OS is an independent Debian 12 (Bookworm) live-image project using XFCE4.
-It is not a separate Linux kernel or an official Debian release.
+There is no DEROX OS 2.0 ISO builder yet.
 
-## Build the ISO
+The previous Debian live-build configuration belongs to DEROX OS 1.0 and has been removed from this branch. The build entry point intentionally exits with an explanation so it cannot accidentally create a Debian-based image.
 
-The supported build path is GitHub Actions:
-
-1. Open the repository's **Actions** tab.
-2. Select **Build DEROX OS 1.0 ISO**.
-3. Choose **Run workflow**.
-4. Wait for the build job to finish.
-5. Download the `derox-os-iso` artifact from the completed run.
-
-The artifact contains a bootable hybrid ISO and a SHA-256 checksum file.
-The workflow is also triggered when files under `iso/` change.
-
-## Included
-
-- Debian 12 Bookworm base
-- XFCE4 desktop
-- LightDM login manager
-- NetworkManager
-- Firefox ESR
-- Common terminal tools
-- DEROX OS branding and the `derox` system-information command
-
-## Before installing
-
-First boot the ISO in a virtual machine or use the live session without installing.
-Back up important files before installing any operating system. Creating a bootable
-USB erases the USB drive. The live image is amd64/x86_64 and is not intended for
-32-bit-only computers.
-
-## Hardware note
-
-XFCE4 is selected to keep the desktop relatively light, but actual performance
-depends on the computer's CPU, graphics, storage, and drivers. A 4 GB RAM system
-may run it, but this has not yet been tested on every device.
+The 2.0 build system will be added after the LFS bootstrap toolchain and base-system recipes are pinned and tested. See [the 2.0 roadmap](../v2/ROADMAP.md).
