@@ -6,7 +6,8 @@ All milestones are planned; none should be marked complete until tested and revi
 - [x] Record the independent-from-other-distributions goal and initial architecture.
 - [x] Define the first package manifest schema and add a read-only validator with unit tests.
 - [x] Remove the Debian 1.0 ISO workflow and legacy live-build hook from this branch.
-- [ ] Select and pin the LFS/BLFS book revision and x86_64 toolchain inputs.
+- [x] Select and pin the stable LFS systemd 13.1 book revision.
+- [ ] Pin the matching BLFS desktop component set and exact source checksums.
 - [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
 - [ ] Add networking, certificates, audio, and hardware support.
