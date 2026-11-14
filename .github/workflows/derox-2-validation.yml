@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Compile Python tools
-        run: python -m py_compile v2/tools/validate-manifest.py
+        run: python -m py_compile v2/tools/validate_manifest.py
       - name: Run validator tests
         working-directory: v2/tools
         run: python -m unittest -v test_validate_manifest.py
