@@ -24,6 +24,15 @@ The Linux kernel and upstream projects remain external open-source components; D
 - Sign repository metadata and release checksums.
 - Never run package installation scripts from an untrusted repository as root without a reviewed, restricted design.
 
+## Pinned upstream reference
+
+- LFS systemd book: **13.1**, stable release published 2026-09-01.
+- Official book: https://www.linuxfromscratch.org/lfs/downloads/stable-systemd/LFS-BOOK-13.1-NOCHUNKS.html
+- Official stable download index: https://www.linuxfromscratch.org/lfs/download.html
+- Track the matching LFS errata and security advisories before each build. Do not silently follow the development book.
+
+The LFS book is a build reference, not a ready-made DEROX root filesystem. DEROX must maintain its own pinned source manifest, patches, build scripts, tests, and release process.
+
 ## Initial target
 
 The first milestone is a minimal x86_64 system that boots in a virtual machine and provides a login shell. XFCE and the DEROX App Manager come after that milestone. The full desktop ISO is not the first build target.
