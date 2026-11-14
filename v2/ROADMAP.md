@@ -12,8 +12,10 @@ All milestones are planned; none should be marked complete until tested and revi
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
 - [ ] Add networking, certificates, audio, and hardware support.
 - [ ] Build and test the XFCE desktop session.
-- [ ] Integrate the official DEROX 2.0 default wallpaper and branding.
-- [ ] Implement the DEROX package manifest and repository metadata verifier.
+- [x] Create an official DEROX 2.0 purple-galaxy SVG wallpaper asset.
+- [ ] Integrate the wallpaper into the XFCE desktop image and verify it in a booted session.
+- [x] Define the initial DEROX package manifest schema and read-only validator.
+- [ ] Implement signed repository metadata verification.
 - [ ] Implement `derox-pkg` install, remove, upgrade, and recovery.
 - [ ] Implement DEROX App Manager.
 - [ ] Produce a reproducible live ISO.
