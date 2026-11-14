@@ -11,6 +11,7 @@ All milestones are planned; none should be marked complete until tested and revi
 - [x] Add a source-lock format, read-only validator, unit tests, and CI checks; source list intentionally remains empty until upstream checksums are verified.
 - [x] Document the staged build process, host requirements, and evidence-based build gates.
 - [x] Add a non-invasive Linux x86_64 build-host preflight checker and CI syntax/help checks.
+- [x] Add a source downloader that enforces HTTPS, safe archive names, and SHA-256 verification, with unit tests.
 - [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
 - [ ] Add networking, certificates, audio, and hardware support.
