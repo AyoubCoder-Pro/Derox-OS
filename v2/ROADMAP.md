@@ -8,6 +8,7 @@ All milestones are planned; none should be marked complete until tested and revi
 - [x] Remove the Debian 1.0 ISO workflow and legacy live-build hook from this branch.
 - [x] Select and pin the stable LFS systemd 13.1 book revision.
 - [ ] Pin the matching BLFS desktop component set and exact source checksums.
+- [x] Add a source-lock format, read-only validator, unit tests, and CI checks; source list intentionally remains empty until upstream checksums are verified.
 - [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
 - [ ] Add networking, certificates, audio, and hardware support.
