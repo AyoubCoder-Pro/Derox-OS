@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#05020f"/><stop offset=".55" stop-color="#17083b"/><stop offset="1" stop-color="#09051a"/></linearGradient>
+    <radialGradient id="nebula"><stop stop-color="#a020f0" stop-opacity=".8"/><stop offset=".45" stop-color="#5815b8" stop-opacity=".35"/><stop offset="1" stop-color="#12051f" stop-opacity="0"/></radialGradient>
+    <radialGradient id="planet"><stop stop-color="#e5c9ff"/><stop offset=".55" stop-color="#8b39e8"/><stop offset="1" stop-color="#25084d"/></radialGradient>
+    <linearGradient id="mountain" x2="0" y2="1"><stop stop-color="#483078"/><stop offset="1" stop-color="#090817"/></linearGradient>
+    <linearGradient id="water" x2="0" y2="1"><stop stop-color="#4c159b" stop-opacity=".8"/><stop offset="1" stop-color="#070511"/></linearGradient>
+    <linearGradient id="logo"><stop stop-color="#fff"/><stop offset=".68" stop-color="#c8b4ef"/><stop offset="1" stop-color="#c22cff"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="14"/></filter>
+    <pattern id="stars" width="170" height="130" patternUnits="userSpaceOnUse"><circle cx="12" cy="18" r="1.5" fill="#fff"/><circle cx="86" cy="42" r="1" fill="#d9baff"/><circle cx="143" cy="90" r="1.8" fill="#fff"/><circle cx="45" cy="112" r="1" fill="#c79cff"/></pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <ellipse cx="480" cy="360" rx="720" ry="400" fill="url(#nebula)"/>
+  <circle cx="1390" cy="300" r="230" fill="#8c31e7" opacity=".24" filter="url(#glow)"/>
+  <circle cx="1390" cy="300" r="205" fill="url(#planet)"/>
+  <path d="M1195 270 Q1390 180 1588 275" fill="none" stroke="#e5c5ff" stroke-opacity=".5" stroke-width="3"/>
+  <rect width="1920" height="680" fill="url(#stars)"/>
+  <path d="M0 650 L210 480 350 580 560 420 730 600 940 460 1110 590 1300 410 1460 590 1640 450 1920 640 V780 H0Z" fill="url(#mountain)"/>
+  <path d="M0 695 L220 600 390 680 620 540 810 700 1050 570 1250 690 1490 540 1700 680 1920 580 V820 H0Z" fill="#100a26"/>
+  <path d="M0 735 Q420 700 960 740 Q1460 700 1920 730 V1080 H0Z" fill="url(#water)"/>
+  <path d="M0 742 Q480 720 960 745 Q1460 720 1920 742" fill="none" stroke="#a64dff" stroke-width="5" opacity=".8"/>
+  <ellipse cx="960" cy="750" rx="360" ry="22" fill="#b34aff" opacity=".6" filter="url(#glow)"/>
+  <g opacity=".4" stroke="#bd76ff" stroke-width="2"><path d="M650 790h620M730 820h460M810 850h300M875 885h170M760 930h400M690 980h540"/></g>
+  <g fill="#05030d"><path d="M95 740l35-180 35 180zM115 660l-55 35h110zM130 620l-45 30h90zM1760 735l38-200 38 200zM1780 640l-60 35h120zM1810 600l-45 30h90z"/></g>
+  <g text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" font-weight="700">
+    <text x="960" y="570" font-size="104" letter-spacing="8" fill="#c12dff" opacity=".6" filter="url(#glow)">DEROX OS</text>
+    <text x="960" y="570" font-size="104" letter-spacing="8" fill="url(#logo)">DEROX OS</text>
+    <path d="M500 600H780 M1140 600H1420" stroke="#a83dff" stroke-width="3"/>
+    <text x="960" y="650" font-size="62" letter-spacing="18" fill="#d69aff">2.0</text>
+  </g>
+  <rect width="1920" height="1080" fill="none" stroke="#3d1768" stroke-width="12"/>
+</svg>
