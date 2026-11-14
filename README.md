@@ -32,6 +32,24 @@ The ISO is built with GitHub Actions:
 4. Download the `derox-os-iso` artifact and extract the ZIP file.
 5. Verify the ISO with the included SHA-256 checksum file.
 
+### Join split download parts (Windows)
+
+If a release is provided as multiple files such as `DEROX-OS-v1.0-amd64.iso.xz.part-000` and `DEROX-OS-v1.0-amd64.iso.xz.part-001`, join them **in numerical order** before extracting:
+
+1. Download **all** parts and place them in the same folder. Make sure both files have their complete names and are not still downloading.
+2. Open Command Prompt in that folder. In File Explorer, open the folder, click the address bar, type `cmd`, and press Enter.
+3. Run this command:
+
+   ```bat
+   copy /b "DEROX-OS-v1.0-amd64.iso.xz.part-000"+"DEROX-OS-v1.0-amd64.iso.xz.part-001" "DEROX-OS-v1.0-amd64.iso.xz"
+   ```
+
+4. Wait for Windows to report that one file was copied. You should now have `DEROX-OS-v1.0-amd64.iso.xz` in that folder.
+5. Extract the `.xz` file with 7-Zip or a compatible archive tool. The extracted file should be `DEROX-OS-v1.0-amd64.iso`.
+6. Keep the original part files until you have checked that the ISO was extracted successfully.
+
+**Important:** Do not extract each part separately, do not change their order, and do not use a text editor to combine them. If the release has more than two parts, add every part to the same command in order: `part-000`+`part-001`+`part-002`, and so on. The names above are examples; use the exact filenames shown on the release page.
+
 ## Try it safely
 
 Test the live ISO in a virtual machine or boot it as a live USB before considering installation. Creating a bootable USB erases the USB drive, so back up its files first. The current image is a live system; it is not yet a full disk installer.
