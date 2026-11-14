@@ -16,6 +16,12 @@ DEROX OS is an independent Debian-based live Linux project, built around Debian 
 - Firefox ESR and useful system tools
 - DEROX OS welcome branding and `derox` terminal command
 
+## DEROX OS 2.0 — a new distribution from scratch
+
+DEROX OS 2.0 is a separate, ground-up project: its design, system structure, and distribution identity are being created from scratch. Unlike version 1.0, version 2.0 is **not based on Debian** (and is not a Debian, Ubuntu, or Arch derivative). It is being developed as an independent Linux distribution, using upstream open-source components such as the Linux kernel.
+
+Version 2.0 is still under development. It does not yet have a completed, bootable ISO. The 1.0 release remains the Debian-based version described above; work on 2.0 does not change or replace that history.
+
 ## Build and download
 
 The ISO is built with GitHub Actions:
