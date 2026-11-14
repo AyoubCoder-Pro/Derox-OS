@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "name": "demo-app",
+  "version": "0.1.0",
+  "architecture": "x86_64",
+  "description": "Example package manifest for DEROX 2.0 tooling tests.",
+  "license": "MIT",
+  "dependencies": [],
+  "conflicts": [],
+  "payload": {
+    "file": "demo-app-0.1.0.tar.zst",
+    "format": "tar.zst",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
