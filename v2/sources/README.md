@@ -1,19 +1,18 @@
-# DEROX source lock
+# DEROX upstream source lock
 
-This directory will contain the exact upstream source inputs used to build DEROX OS 2.0.
+The source lock records the exact upstream archive URL, filename, version, license, homepage, and SHA-256 digest for every build input.
 
-## Rules
+## Validate and download
 
-- Every source entry must have an upstream HTTPS URL, a pinned version, an archive filename, and a SHA-256 digest.
-- Never use a moving URL such as `latest`, `current`, or an unpinned Git branch as a release input.
-- Verify checksums against the upstream project's published checksum/signature before adding an entry.
-- Record the upstream license and project homepage.
-- Do not invent checksums. The initial lock file is intentionally empty until each source is verified.
+From the repository root:
 
-Validate a lock file with:
-
-```sh
-python v2/tools/validate_sources.py v2/sources/sources.json
+```bash
+python3 v2/tools/validate_sources.py v2/sources/sources.json
+python3 v2/tools/fetch_sources.py v2/sources/sources.json --output sources
 ```
 
-A valid empty lock file is only a structurally valid starting point; it is not a buildable system.
+The downloader accepts HTTPS URLs only, rejects unsafe archive names, checks the final redirect remains HTTPS, streams each archive to a temporary `.part` file, and only renames it into place after its SHA-256 matches the lock. A pre-existing archive is accepted only if its digest matches exactly.
+
+Do not add a source until its version, official download URL, archive name, license, and SHA-256 have been checked against the upstream project's release information. Never invent or copy an unverified digest.
+
+The starter lock is intentionally empty. The downloader therefore refuses to run until the source inventory is populated. This is expected and prevents an incomplete or fabricated source list from being treated as build-ready.
