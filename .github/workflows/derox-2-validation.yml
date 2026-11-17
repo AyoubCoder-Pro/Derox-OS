@@ -44,3 +44,8 @@ jobs:
         run: bash -n v2/build/host-check.sh
       - name: Check build preflight help
         run: bash v2/build/host-check.sh --help
+
+      - name: Check wallpaper installer shell syntax
+        run: bash -n v2/wallpapers/install-default.sh v2/wallpapers/test-install-default.sh
+      - name: Test wallpaper integration into target rootfs
+        run: bash v2/wallpapers/test-install-default.sh
