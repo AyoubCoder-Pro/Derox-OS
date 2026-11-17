@@ -10,7 +10,7 @@ All milestones are planned; none should be marked complete until tested and revi
 - [ ] Pin the matching BLFS desktop component set and exact source checksums.
 - [x] Add a source-lock format, read-only validator, unit tests, and CI checks; source list intentionally remains empty until upstream checksums are verified.
 - [x] Document the staged build process, host requirements, and evidence-based build gates.
-- [x] Add a non-invasive Linux x86_64 build-host preflight checker and CI syntax/help checks.
+- [x] Add a non-invasive Linux x86_64 build-host preflight checker and CI syntax/help checks.\n- [x] Add tested DEROX OS identity staging for target root filesystems (os-release, issue, hostname, MOTD, release metadata).
 - [x] Add a source downloader that enforces HTTPS, safe archive names, and SHA-256 verification, with unit tests.
 - [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
@@ -24,7 +24,7 @@ All milestones are planned; none should be marked complete until tested and revi
 - [ ] Implement signed repository metadata verification.
 - [ ] Implement `derox-pkg` install, remove, upgrade, and recovery.
 - [ ] Implement DEROX App Manager.
-- [ ] Commit the generated black bootloader PNG and validate the GRUB theme asset.
+- [ ] Commit the generated black bootloader PNG and validate the GRUB theme asset.\n  - [x] Add and pass automated tests for the GRUB theme staging helper.
 - [ ] Integrate the GRUB theme into BIOS/UEFI boot configuration and test both firmware paths.
 - [ ] Produce a reproducible live ISO.
 - [ ] Test installation, updates, rollback/recovery, and SHA-256 release verification.
