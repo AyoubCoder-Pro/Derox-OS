@@ -49,3 +49,7 @@ jobs:
         run: bash -n v2/bootloader/stage-theme.sh v2/bootloader/test-stage-theme.sh
       - name: Test GRUB theme staging
         run: bash v2/bootloader/test-stage-theme.sh
+      - name: Check DEROX identity scripts
+        run: bash -n v2/system/install-identity.sh v2/system/test-install-identity.sh
+      - name: Test DEROX identity staging
+        run: bash v2/system/test-install-identity.sh
