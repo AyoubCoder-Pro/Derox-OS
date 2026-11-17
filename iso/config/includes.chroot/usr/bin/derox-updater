@@ -1,0 +1,97 @@
+#!/usr/bin/python3
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk, GLib
+import subprocess
+import threading
+
+class DeroxUpdater(Gtk.Window):
+    def __init__(self):
+        super().__init__(title="DEROX Updater")
+        self.set_default_size(620, 430)
+        self.set_border_width(18)
+        root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        self.add(root)
+
+        title = Gtk.Label()
+        title.set_markup("<span size='xx-large' weight='bold'>DEROX Updater</span>")
+        title.set_xalign(0)
+        root.pack_start(title, False, False, 0)
+
+        subtitle = Gtk.Label(label="Update DEROX OS and installed applications")
+        subtitle.set_xalign(0)
+        root.pack_start(subtitle, False, False, 0)
+
+        self.status = Gtk.Label(label="Ready to check and install updates.")
+        self.status.set_xalign(0)
+        root.pack_start(self.status, False, False, 4)
+
+        self.progress = Gtk.ProgressBar()
+        root.pack_start(self.progress, False, False, 0)
+
+        self.log = Gtk.TextView()
+        self.log.set_editable(False)
+        self.log.set_monospace(True)
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_vexpand(True)
+        scroll.add(self.log)
+        root.pack_start(scroll, True, True, 0)
+
+        buttons = Gtk.Box(spacing=8)
+        root.pack_start(buttons, False, False, 0)
+        self.update_button = Gtk.Button(label="Install system & app updates")
+        self.update_button.get_style_context().add_class("suggested-action")
+        self.update_button.connect("clicked", self.start_update)
+        buttons.pack_start(self.update_button, True, True, 0)
+        close = Gtk.Button(label="Close")
+        close.connect("clicked", lambda *_: Gtk.main_quit())
+        buttons.pack_start(close, False, False, 0)
+
+        note = Gtk.Label(label="Administrator permission is requested securely by the system.")
+        note.set_xalign(0)
+        note.set_line_wrap(True)
+        root.pack_start(note, False, False, 0)
+
+    def append(self, message):
+        buf = self.log.get_buffer()
+        end = buf.get_end_iter()
+        buf.insert(end, message + "\n")
+        mark = buf.create_mark(None, buf.get_end_iter(), False)
+        self.log.scroll_to_mark(mark, 0.0, True, 0.0, 1.0)
+
+    def start_update(self, *_):
+        self.update_button.set_sensitive(False)
+        self.progress.pulse()
+        self.status.set_text("Updating package lists and installed software…")
+        self.append("Starting DEROX system and application update.")
+        threading.Thread(target=self.run_update, daemon=True).start()
+
+    def run_update(self):
+        command = ["pkexec", "sh", "-c",
+                   "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y"]
+        try:
+            process = subprocess.Popen(command, stdout=subprocess.PIPE,
+                                       stderr=subprocess.STDOUT, text=True, bufsize=1)
+            for line in process.stdout:
+                GLib.idle_add(self.append, line.rstrip())
+            code = process.wait()
+            if code == 0:
+                GLib.idle_add(self.finish, True, "Updates completed successfully.")
+            else:
+                GLib.idle_add(self.finish, False,
+                              "Update failed or was cancelled. Check the log above.")
+        except Exception as error:
+            GLib.idle_add(self.append, str(error))
+            GLib.idle_add(self.finish, False, "Could not start the updater.")
+
+    def finish(self, success, message):
+        self.progress.set_fraction(0)
+        self.status.set_text(message)
+        self.append(message)
+        self.update_button.set_sensitive(True)
+        return False
+
+win = DeroxUpdater()
+win.connect("destroy", Gtk.main_quit)
+win.show_all()
+Gtk.main()

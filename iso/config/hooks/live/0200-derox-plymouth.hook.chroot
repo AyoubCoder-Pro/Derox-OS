@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+THEME_DIR="/usr/share/plymouth/themes/derox"
+mkdir -p "$THEME_DIR"
+
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+    plymouth-set-default-theme derox
+else
+    update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth "$THEME_DIR/derox.plymouth" 100
+    update-alternatives --set default.plymouth "$THEME_DIR/derox.plymouth"
+fi
+
+if command -v update-initramfs >/dev/null 2>&1; then
+    update-initramfs -u -k all
+fi
