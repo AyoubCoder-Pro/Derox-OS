@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
-ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd -- "$(dirname -- "\${BASH_SOURCE[0]}")/../.." && pwd)"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 mkdir -p "$TMP/src" "$TMP/bin" "$TMP/rootfs"
@@ -10,9 +10,11 @@ cat > "$TMP/bin/make" <<'MOCK'
 set -eu
 out=""
 target=""
+install_mod_path=""
 for arg in "$@"; do
   case "$arg" in
-    O=*) out="${arg#O=}";;
+    O=*) out="\${arg#O=}";;
+    INSTALL_MOD_PATH=*) install_mod_path="\${arg#INSTALL_MOD_PATH=}";;
     x86_64_defconfig|olddefconfig|kernelrelease|bzImage|modules|modules_install) target="$arg";;
   esac
 done
@@ -21,16 +23,16 @@ case "$target" in
     mkdir -p "$out"
     printf 'CONFIG_64BIT=y\n' > "$out/.config"
     ;;
-  olddefconfig|modules) : ;;
+  olddefconfig) : ;;
   kernelrelease) printf '7.1.8-derox-test\n' ;;
-  bzImage)
+  bzImage|modules)
     mkdir -p "$out/arch/x86/boot"
     printf 'fake-kernel-image\n' > "$out/arch/x86/boot/bzImage"
     printf 'fake-system-map\n' > "$out/System.map"
     ;;
   modules_install)
-    mkdir -p "${INSTALL_MOD_PATH:?}/lib/modules/7.1.8-derox-test"
-    printf 'fake-module\n' > "${INSTALL_MOD_PATH}/lib/modules/7.1.8-derox-test/test.ko"
+    mkdir -p "\${install_mod_path:?}/lib/modules/7.1.8-derox-test"
+    printf 'fake-module\n' > "\${install_mod_path}/lib/modules/7.1.8-derox-test/test.ko"
     ;;
   *) echo "unexpected make target: $target" >&2; exit 9 ;;
 esac
