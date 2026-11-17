@@ -14,7 +14,9 @@ All milestones are planned; none should be marked complete until tested and revi
 - [x] Add a source downloader that enforces HTTPS, safe archive names, and SHA-256 verification, with unit tests.
 - [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
-- [ ] Add networking, certificates, audio, and hardware support.
+- [ ] Add networking, certificates, and hardware support.
+- [ ] Build ALSA + PipeWire + WirePlumber audio stack; verify speakers, headphones, microphones, volume controls, and device switching (see `v2/audio/README.md`).
+- [ ] Add Bluetooth audio through BlueZ and PipeWire after basic audio is validated.
 - [ ] Build and test the XFCE desktop session.
 - [x] Create an official DEROX 2.0 purple-galaxy SVG wallpaper asset.
 - [ ] Integrate the wallpaper into the XFCE desktop image and verify it in a booted session.
