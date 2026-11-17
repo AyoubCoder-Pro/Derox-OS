@@ -40,7 +40,6 @@ jobs:
         run: bash -n v2/build/host-check.sh
       - name: Check build preflight help
         run: bash v2/build/host-check.sh --help
-
       - name: Check wallpaper installer shell syntax
         run: bash -n v2/wallpapers/install-default.sh v2/wallpapers/test-install-default.sh
       - name: Test wallpaper integration into target rootfs
@@ -53,8 +52,11 @@ jobs:
         run: bash -n v2/system/install-identity.sh v2/system/test-install-identity.sh
       - name: Test DEROX identity staging
         run: bash v2/system/test-install-identity.sh
-
       - name: Check build-gate scripts
         run: bash -n v2/build/check-build-gates.sh v2/build/test-check-build-gates.sh
       - name: Test empty source lock blocks build
         run: bash v2/build/test-check-build-gates.sh
+      - name: Check kernel build scripts
+        run: bash -n v2/kernel/build-kernel.sh v2/kernel/test-build-kernel.sh
+      - name: Test kernel staging helper
+        run: bash v2/kernel/test-build-kernel.sh
