@@ -60,3 +60,8 @@ jobs:
         run: bash -n v2/kernel/build-kernel.sh v2/kernel/test-build-kernel.sh
       - name: Test kernel staging helper
         run: bash v2/kernel/test-build-kernel.sh
+
+      - name: Check initramfs scripts
+        run: bash -n v2/initramfs/create-initramfs.sh v2/initramfs/test-create-initramfs.sh
+      - name: Test initramfs archive helper
+        run: bash v2/initramfs/test-create-initramfs.sh
