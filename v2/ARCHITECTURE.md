@@ -11,8 +11,10 @@ The Linux kernel and upstream projects remain external open-source components; D
 1. **Bootstrap toolchain** — temporary compiler, linker, headers, and build utilities used to construct the target system.
 2. **Base system** — C library, compiler runtime, shell, core utilities, init/service manager, device management, networking, certificates, and package-management foundations.
 3. **Desktop** — X.Org or Wayland components as supported by the selected XFCE release, XFCE session, display manager, fonts, themes, and DEROX branding.
-4. **DEROX package services** — package client, repository metadata, signing keys, dependency solver, and update service.
-5. **Image and installer** — reproducible ISO generation, live boot, hardware detection, and a safe installer only after the live image is stable.
+4. **Hardware media** — ALSA kernel/userspace audio, PipeWire, WirePlumber, PulseAudio compatibility, XFCE volume controls, and device firmware where legally redistributable. Speakers, headphones, and microphones are required desktop targets; Bluetooth audio is a separate extension.
+5. **DEROX package services** — package client, repository metadata, signing keys, dependency solver, and update service.
+6. **Image and installer** — reproducible ISO generation, live boot, hardware detection, and a safe installer only after the live image is stable.
+
 
 ## Package and build principles
 
