@@ -9,28 +9,30 @@ cat > "$TMP/bin/make" <<'MOCK'
 #!/usr/bin/env bash
 set -eu
 out=""
+target=""
 for arg in "$@"; do
-  case "$arg" in O=*) out="${arg#O=}";; esac
+  case "$arg" in
+    O=*) out="${arg#O=}";;
+    x86_64_defconfig|olddefconfig|kernelrelease|bzImage|modules|modules_install) target="$arg";;
+  esac
 done
-last="${!#}"
-case "$last" in
+case "$target" in
   x86_64_defconfig)
     mkdir -p "$out"
     printf 'CONFIG_64BIT=y\n' > "$out/.config"
     ;;
-  olddefconfig) : ;;
+  olddefconfig|modules) : ;;
   kernelrelease) printf '7.1.8-derox-test\n' ;;
   bzImage)
     mkdir -p "$out/arch/x86/boot"
     printf 'fake-kernel-image\n' > "$out/arch/x86/boot/bzImage"
     printf 'fake-system-map\n' > "$out/System.map"
     ;;
-  modules) : ;;
   modules_install)
     mkdir -p "${INSTALL_MOD_PATH:?}/lib/modules/7.1.8-derox-test"
     printf 'fake-module\n' > "${INSTALL_MOD_PATH}/lib/modules/7.1.8-derox-test/test.ko"
     ;;
-  *) echo "unexpected make target: $last" >&2; exit 9 ;;
+  *) echo "unexpected make target: $target" >&2; exit 9 ;;
 esac
 MOCK
 chmod +x "$TMP/bin/make"
