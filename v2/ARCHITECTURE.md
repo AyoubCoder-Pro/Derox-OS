@@ -38,3 +38,4 @@ The LFS book is a build reference, not a ready-made DEROX root filesystem. DEROX
 ## Initial target
 
 The first milestone is a minimal x86_64 system that boots in a virtual machine and provides a login shell. XFCE and the DEROX App Manager come after that milestone. The full desktop ISO is not the first build target.
+\n## Distribution identity\n\nThe target root filesystem receives DEROX-specific `/etc/os-release`, `/etc/issue`, `/etc/hostname`, `/etc/motd`, and `/usr/share/derox/release-info` from the non-invasive `v2/system/install-identity.sh` staging helper. This helper is tested in CI and does not create the root filesystem itself.\n
