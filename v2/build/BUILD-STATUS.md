@@ -10,7 +10,7 @@
 | Default wallpaper rootfs integration | Implemented; CI passed | SVG and XFCE defaults staged into a test rootfs |
 | GRUB bootloader theme | Staging helper and tests implemented; artwork pending | Commit PNG artwork, generate GRUB config, build ISO, and boot-test UEFI/BIOS |
 | DEROX OS identity files | Implemented; CI test added | Stage os-release, issue, hostname, MOTD, and release metadata |
-| Kernel build/staging helper | Implemented; mock test added | Pin and verify official kernel source, perform real compilation, stage modules, and boot-test |
+| Kernel build/staging helper | Implemented; mock test passed in CI | Pin and verify official kernel source, perform real compilation, stage modules, and boot-test |\n| Initramfs archive helper | Implemented; CI test added | Build archive from a real early-boot rootfs and verify it boots with the kernel |
 | Verified source inventory | Blocked | Non-empty lock with independently checked upstream SHA-256 values |
 | Toolchain readiness gate | Implemented; build blocked | Verified source lock, reviewed recipes, and reproducible compiler logs |
 | Base system | Not started | Successful clean build |
