@@ -53,3 +53,8 @@ jobs:
         run: bash -n v2/system/install-identity.sh v2/system/test-install-identity.sh
       - name: Test DEROX identity staging
         run: bash v2/system/test-install-identity.sh
+
+      - name: Check build-gate scripts
+        run: bash -n v2/build/check-build-gates.sh v2/build/test-check-build-gates.sh
+      - name: Test empty source lock blocks build
+        run: bash v2/build/test-check-build-gates.sh
