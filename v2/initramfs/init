@@ -1,0 +1,53 @@
+#!/bin/sh
+# DEROX early userspace entry point.
+# Install as /init in the initramfs and ensure /bin/sh and required applets exist.
+set -eu
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export PATH
+
+rescue() {
+  echo "DEROX initramfs: $*" >/dev/console 2>/dev/null || true
+  echo "Entering emergency shell." >/dev/console 2>/dev/null || true
+  exec /bin/sh
+}
+
+mount -t devtmpfs devtmpfs /dev 2>/dev/null || true
+mkdir -p /proc /sys /run /newroot
+
+mount -t proc proc /proc || rescue "cannot mount /proc"
+mount -t sysfs sysfs /sys || rescue "cannot mount /sys"
+
+ROOT_DEVICE=""
+ROOT_FSTYPE=""
+ROOT_FLAGS=""
+
+for arg in $(cat /proc/cmdline); do
+  case "$arg" in
+    root=*) ROOT_DEVICE="${arg#root=}";;
+    rootfstype=*) ROOT_FSTYPE="${arg#rootfstype=}";;
+    rootflags=*) ROOT_FLAGS="${arg#rootflags=}";;
+  esac
+done
+
+[ -n "$ROOT_DEVICE" ] || rescue "kernel command line has no root= device"
+[ -b "$ROOT_DEVICE" ] || rescue "root device is not available: $ROOT_DEVICE"
+
+MOUNT_ARGS=""
+[ -n "$ROOT_FLAGS" ] && MOUNT_ARGS="-o $ROOT_FLAGS"
+if [ -n "$ROOT_FSTYPE" ]; then
+  # rootflags are intentionally passed as a single option string.
+  mount -t "$ROOT_FSTYPE" $MOUNT_ARGS "$ROOT_DEVICE" /newroot || rescue "cannot mount root filesystem"
+else
+  mount $MOUNT_ARGS "$ROOT_DEVICE" /newroot || rescue "cannot mount root filesystem"
+fi
+
+[ -x /newroot/sbin/init ] || [ -x /newroot/lib/systemd/systemd ] || rescue "real root has no init system"
+mount -o move /dev /newroot/dev || rescue "cannot move /dev"
+mount -o move /proc /newroot/proc || rescue "cannot move /proc"
+mount -o move /sys /newroot/sys || rescue "cannot move /sys"
+
+if [ -x /newroot/sbin/init ]; then
+  exec switch_root /newroot /sbin/init
+fi
+exec switch_root /newroot /lib/systemd/systemd
