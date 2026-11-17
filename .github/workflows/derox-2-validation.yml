@@ -40,12 +40,12 @@ jobs:
         run: bash -n v2/build/host-check.sh
       - name: Check build preflight help
         run: bash v2/build/host-check.sh --help
-      - name: Check build preflight shell syntax
-        run: bash -n v2/build/host-check.sh
-      - name: Check build preflight help
-        run: bash v2/build/host-check.sh --help
 
       - name: Check wallpaper installer shell syntax
         run: bash -n v2/wallpapers/install-default.sh v2/wallpapers/test-install-default.sh
       - name: Test wallpaper integration into target rootfs
         run: bash v2/wallpapers/test-install-default.sh
+      - name: Check GRUB theme scripts
+        run: bash -n v2/bootloader/stage-theme.sh v2/bootloader/test-stage-theme.sh
+      - name: Test GRUB theme staging
+        run: bash v2/bootloader/test-stage-theme.sh
