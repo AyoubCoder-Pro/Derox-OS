@@ -24,6 +24,8 @@ All milestones are planned; none should be marked complete until tested and revi
 - [ ] Implement signed repository metadata verification.
 - [ ] Implement `derox-pkg` install, remove, upgrade, and recovery.
 - [ ] Implement DEROX App Manager.
+- [ ] Commit the generated black bootloader PNG and validate the GRUB theme asset.
+- [ ] Integrate the GRUB theme into BIOS/UEFI boot configuration and test both firmware paths.
 - [ ] Produce a reproducible live ISO.
 - [ ] Test installation, updates, rollback/recovery, and SHA-256 release verification.
 - [ ] Publish a clearly labelled alpha release.
