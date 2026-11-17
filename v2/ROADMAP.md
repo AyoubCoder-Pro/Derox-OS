@@ -12,7 +12,7 @@ All milestones are planned; none should be marked complete until tested and revi
 - [x] Document the staged build process, host requirements, and evidence-based build gates.
 - [x] Add a non-invasive Linux x86_64 build-host preflight checker and CI syntax/help checks.\n- [x] Add tested DEROX OS identity staging for target root filesystems (os-release, issue, hostname, MOTD, release metadata).
 - [x] Add a source downloader that enforces HTTPS, safe archive names, and SHA-256 verification, with unit tests.
-- [ ] Create reproducible bootstrap and base-system build recipes.
+- [x] Add a read-only build-readiness gate and staged toolchain contract; actual compiler recipes and compiler build remain pending.\n- [ ] Create reproducible bootstrap and base-system build recipes.
 - [ ] Build a minimal system and boot it in QEMU/VirtualBox.
 - [ ] Add networking, certificates, and hardware support.
 - [ ] Build ALSA + PipeWire + WirePlumber audio stack; verify speakers, headphones, microphones, volume controls, and device switching (see `v2/audio/README.md`).
