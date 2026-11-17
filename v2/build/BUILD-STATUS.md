@@ -13,6 +13,7 @@
 | Base system | Not started | Successful clean build |
 | Minimal boot | Not started | QEMU/VirtualBox boot log and test record |
 | Networking and firmware | Not started | Hardware/VM connectivity tests |
+| Speakers and microphones | Design documented | Built ALSA/PipeWire/WirePlumber stack; playback, capture, device-switching, and physical-hardware test logs |
 | XFCE desktop | Not started | Successful graphical login test |
 | DEROX package manager | Design only | Signature verification and install/remove/upgrade tests |
 | Live ISO and installer | Not started | Reproducible image plus install/recovery tests |
