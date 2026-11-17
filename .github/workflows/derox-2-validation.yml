@@ -62,6 +62,8 @@ jobs:
         run: bash v2/kernel/test-build-kernel.sh
 
       - name: Check initramfs scripts
-        run: bash -n v2/initramfs/create-initramfs.sh v2/initramfs/test-create-initramfs.sh
+        run: bash -n v2/initramfs/create-initramfs.sh v2/initramfs/test-create-initramfs.sh v2/initramfs/install-init.sh v2/initramfs/test-install-init.sh
       - name: Test initramfs archive helper
         run: bash v2/initramfs/test-create-initramfs.sh
+      - name: Test initramfs init staging
+        run: bash v2/initramfs/test-install-init.sh
