@@ -1,0 +1,32 @@
+# DEROX OS 2.0 GRUB theme
+# Place derox-2.0-bootloader.png beside this file before packaging.
+desktop-image: "derox-2.0-bootloader.png"
+title-text: ""
+message-font: "DejaVu Sans Regular 12"
+message-color: "#eeeeee"
+terminal-font: "DejaVu Sans Mono Regular 12"
+terminal-box: "terminal_box_*.png"
+
++ boot_menu {
+  left = 12%
+  top = 32%
+  width = 76%
+  height = 34%
+  item_font = "DejaVu Sans Regular 18"
+  item_color = "#eeeeee"
+  selected_item_color = "#ffffff"
+  selected_item_pixmap_style = "select_*.png"
+  item_height = 42
+  item_padding = 8
+  menu_pixmap_style = "menu_*.png"
+}
+
++ label {
+  top = 86%
+  left = 4%
+  width = 70%
+  height = 24
+  text = "POWERED BY DEROX PROJECT"
+  color = "#c000ff"
+  font = "DejaVu Sans Regular 12"
+}
