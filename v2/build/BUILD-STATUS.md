@@ -7,6 +7,7 @@
 | Architecture and build plan | Complete | Reviewed design documents |
 | Source-lock schema and validator | Complete | Passing unit tests and CI |
 | Host preflight checker | Complete | Shell syntax check in CI |
+| Default wallpaper rootfs integration | Implemented; CI pending | Installer copies the SVG and configures XFCE defaults for new users |
 | Verified source inventory | Blocked | Non-empty lock with independently checked upstream SHA-256 values |
 | Temporary toolchain recipes | Not started | Reviewed recipes and reproducible logs |
 | Base system | Not started | Successful clean build |
