@@ -19,6 +19,7 @@
 | Speakers and microphones | Design documented | Build ALSA/PipeWire/WirePlumber; test playback, capture, and device switching |
 | XFCE desktop | Not started | Successful graphical login test |
 | DEROX package manager | Design only | Signature verification and install/remove/upgrade tests |
+| Lightweight ISO profile | Policy defined; not built | Minimal runtime selection, SquashFS compression benchmark, measured image size |
 | Live ISO and installer | Not started | Reproducible image plus install/recovery tests |
 
 The kernel helper builds an x86_64 `bzImage` and modules from an already verified, extracted source tree, then stages them under a target rootfs. It refuses root execution and never runs `make install` against the host. Its automated test uses a mock `make`; it does not prove that a real kernel has compiled.
