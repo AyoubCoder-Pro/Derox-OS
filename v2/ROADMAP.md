@@ -24,6 +24,11 @@ The first beta is allowed to have a smaller feature set than the final vision, b
 - [ ] Build the installable ISO and test install, first boot, reboot, networking, audio, and recovery in a clean VM.
 - [ ] Publish Beta 1 only after the above tests pass and publish SHA-256 release checksums.
 
+### Lightweight ISO policy
+
+- [ ] Follow [`v2/build/ISO-SIZE-POLICY.md`](build/ISO-SIZE-POLICY.md): lean XFCE live profile, no build toolchain/debug symbols/caches in the ISO, and compressed SquashFS.
+- [ ] Aim for a Beta 1 ISO below 2 GiB without removing essential boot, installer, Wi-Fi, audio, or recovery components.
+
 ### After Beta 1
 
 - [ ] Bluetooth and Bluetooth audio.
