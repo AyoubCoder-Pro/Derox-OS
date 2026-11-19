@@ -31,6 +31,10 @@ The checker reports resource recommendations as warnings. It does not install pa
 7. Add networking and desktop components only after the minimal boot milestone passes.
 8. Build the live image and installer only after live-session and recovery tests pass.
 
+## Lightweight release profile
+
+Follow [`ISO-SIZE-POLICY.md`](ISO-SIZE-POLICY.md) when selecting runtime components and producing the live image. Keep compilers, source archives, debug symbols, and build caches outside the release ISO. Use a compressed SquashFS live root and benchmark XZ against Zstandard. The initial size goal is below 2 GiB, subject to successful boot, installation, networking, audio, and recovery tests.
+
 ## Safety and reproducibility rules
 
 - Never copy checksums from unverified mirrors or invent placeholder digests.
