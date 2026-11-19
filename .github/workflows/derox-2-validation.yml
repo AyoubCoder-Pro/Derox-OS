@@ -61,6 +61,10 @@ jobs:
       - name: Test kernel staging helper
         run: bash v2/kernel/test-build-kernel.sh
 
+      - name: Check rootfs skeleton scripts
+        run: bash -n v2/rootfs/create-rootfs-skeleton.sh v2/rootfs/test-create-rootfs-skeleton.sh
+      - name: Test rootfs skeleton staging
+        run: bash v2/rootfs/test-create-rootfs-skeleton.sh
       - name: Check initramfs scripts
         run: bash -n v2/initramfs/create-initramfs.sh v2/initramfs/test-create-initramfs.sh v2/initramfs/install-init.sh v2/initramfs/test-install-init.sh
       - name: Test initramfs archive helper
