@@ -1,35 +1,40 @@
-# DEROX OS 2.0 roadmap
+# DEROX OS 2.0 roadmap — installation-first plan
 
-All milestones are planned; none should be marked complete until tested and reviewed.
+The immediate goal is a **bootable and installable x86_64 beta ISO**. Do not spend time polishing secondary features before a minimal installable system exists.
 
-- [x] Create a separate `derox-2.0` development branch.
-- [x] Record the independent-from-other-distributions goal and initial architecture.
-- [x] Define the first package manifest schema and add a read-only validator with unit tests.
-- [x] Remove the Debian 1.0 ISO workflow and legacy live-build hook from this branch.
-- [x] Select and pin the stable LFS systemd 13.1 book revision.
-- [ ] Pin the matching BLFS desktop component set and exact source checksums.
-- [x] Add a source-lock format, read-only validator, unit tests, and CI checks; source list intentionally remains empty until upstream checksums are verified.
-- [x] Document the staged build process, host requirements, and evidence-based build gates.
-- [x] Add a non-invasive Linux x86_64 build-host preflight checker and CI syntax/help checks.\n- [x] Add tested DEROX OS identity staging for target root filesystems (os-release, issue, hostname, MOTD, release metadata).
-- [x] Add a source downloader that enforces HTTPS, safe archive names, and SHA-256 verification, with unit tests.
-- [x] Add a read-only build-readiness gate and staged toolchain contract; actual compiler recipes and compiler build remain pending.\n- [ ] Create reproducible bootstrap and base-system build recipes.
-- [ ] Build a minimal system and boot it in QEMU/VirtualBox.
-- [ ] Add networking, certificates, and hardware support.
-- [ ] Build ALSA + PipeWire + WirePlumber audio stack; verify speakers, headphones, microphones, volume controls, and device switching (see `v2/audio/README.md`).
-- [ ] Add Bluetooth audio through BlueZ and PipeWire after basic audio is validated.
-- [ ] Build and test the XFCE desktop session.
-- [x] Create an official DEROX 2.0 purple-galaxy SVG wallpaper asset.
-- [ ] Integrate the wallpaper into the XFCE desktop image and verify it in a booted session.
-- [x] Define the initial DEROX package manifest schema and read-only validator.
-- [ ] Implement signed repository metadata verification.
-- [ ] Implement `derox-pkg` install, remove, upgrade, and recovery.
-- [ ] Implement DEROX App Manager.
-- [ ] Commit the generated black bootloader PNG and validate the GRUB theme asset.\n  - [x] Add and pass automated tests for the GRUB theme staging helper.
-- [ ] Integrate the GRUB theme into BIOS/UEFI boot configuration and test both firmware paths.
-- [ ] Produce a reproducible live ISO.
-- [ ] Test installation, updates, rollback/recovery, and SHA-256 release verification.
-- [ ] Publish a clearly labelled alpha release.
+## Release target: DEROX 2.0 Beta 1
 
-## Release rule
+The first beta is allowed to have a smaller feature set than the final vision, but it must be real, reproducible, and honestly tested.
 
-Do not publish a 2.0 ISO as stable until clean builds and virtual-machine tests pass. Keep the existing 1.0 release and Debian-based workflow untouched.
+### Critical path (do these in order)
+
+- [x] Keep 2.0 isolated on `derox-2.0`; preserve the Debian-based 1.0 branch.
+- [x] Define an independent Linux From Scratch build architecture and pin the LFS systemd 13.1 reference.
+- [x] Add source-lock validation, HTTPS source fetching, SHA-256 enforcement, and build gates.
+- [x] Add rootfs directory skeleton, OS identity, wallpaper, kernel staging, and initramfs staging helpers with CI tests.
+- [ ] Lock the minimal set of base-system sources with independently verified upstream SHA-256/signatures.
+- [ ] Implement executable, reproducible bootstrap-toolchain recipes.
+- [ ] Build the minimal x86_64 base system (systemd, shell, core utilities, device management, essential libraries).
+- [ ] Produce a first minimal boot image and boot it in QEMU/VirtualBox.
+- [ ] Add storage discovery, initramfs integration, GRUB BIOS/UEFI configuration, and recovery path.
+- [ ] Add networking and firmware needed for the target hardware.
+- [ ] Add XFCE, display manager, fonts, DEROX wallpaper, and desktop defaults.
+- [ ] Add audio (ALSA + PipeWire + WirePlumber) and verify speaker, headphone, and microphone support.
+- [ ] Create a live session and a safe guided installer with disk selection and clear destructive-action confirmation.
+- [ ] Build the installable ISO and test install, first boot, reboot, networking, audio, and recovery in a clean VM.
+- [ ] Publish Beta 1 only after the above tests pass and publish SHA-256 release checksums.
+
+### After Beta 1
+
+- [ ] Bluetooth and Bluetooth audio.
+- [ ] Signed DEROX package repository and `derox-pkg` install/remove/upgrade.
+- [ ] DEROX App Manager.
+- [ ] Broader hardware support, accessibility, localization, update/rollback, and security hardening.
+
+## Definition of “installable ISO”
+
+A file ending in `.iso` is not enough. Beta 1 is installable only when it boots from the ISO, reaches a usable live environment, installs to a blank virtual disk without damaging the host, boots from that disk after installation, and passes the documented smoke tests.
+
+## Honest status
+
+The project currently has tested preparation and staging helpers. It does **not** yet have a verified source lock, built toolchain, complete root filesystem, live environment, installer, or bootable 2.0 ISO. Keep these milestones unchecked until there is real build and boot evidence.
