@@ -60,6 +60,11 @@ The ISO targets 64-bit (amd64) PCs. Hardware compatibility and performance still
 
 DEROX OS 1.0 is an initial release candidate for testing and feedback, not a claim of production-grade stability. Please report bugs and hardware compatibility results through GitHub Issues.
 
+## Official social media
+
+- TikTok: [@derox.os](https://www.tiktok.com/@derox.os)
+- Website: [DEROX OS](https://ayoubcoder-pro.github.io/Derox-OS/)
+
 ## Contributing
 
 DEROX OS is an open-source community project. Everyone is welcome to inspect the source, fork the repository, modify their own copy, and propose improvements.
