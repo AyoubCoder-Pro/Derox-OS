@@ -23,3 +23,7 @@ Every source entry must include `sha256_reference` (an HTTPS link to upstream ch
 A SHA-256 calculated locally after downloading is useful for later integrity checks, but by itself it does **not** authenticate the archive. Do not label a locally calculated value as upstream-verified. Some LFS source-index files publish MD5 rather than SHA-256; MD5-only evidence is not sufficient for this DEROX lock policy.
 
 The starter lock remains intentionally empty until suitable SHA-256 evidence is available for each exact pinned archive. Never invent a digest or claim that an empty lock is build-ready.
+
+## Signature verification plan
+
+See [SIGNATURE-VERIFICATION.md](SIGNATURE-VERIFICATION.md) for the reviewed upstream signature formats, maintainer fingerprints, trust requirements, and current candidate decisions. This document does not approve any source; the lock remains empty until verification is actually performed.
