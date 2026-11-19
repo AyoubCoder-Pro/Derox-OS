@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "profile": "beta1-lightweight-x86_64",
+  "architecture": "x86_64",
+  "release_stage": "beta1",
+  "size_target_bytes": 2147483648,
+  "size_target_note": "Aspirational ceiling; release is blocked until boot/install and hardware smoke tests pass.",
+  "compression": {
+    "filesystem": "squashfs",
+    "preferred": "xz",
+    "benchmark_alternative": "zstd",
+    "decision": "Measure image size and boot time before final selection."
+  },
+  "include": [
+    "linux-kernel-and-essential-storage-filesystem-drivers",
+    "systemd-and-essential-runtime-libraries",
+    "shell-and-core-utilities",
+    "device-management",
+    "grub-bios-and-uefi-boot-support",
+    "xfce-desktop-and-lightweight-display-manager",
+    "networkmanager-and-required-wifi-firmware",
+    "alsa-pipewire-wireplumber-audio-stack",
+    "live-session-and-guided-installer",
+    "recovery-tools",
+    "derox-branding-and-default-wallpaper"
+  ],
+  "exclude": [
+    "compilers-and-development-toolchains",
+    "kernel-headers-and-development-headers",
+    "source-archives-and-build-caches",
+    "debug-symbols-in-release-rootfs",
+    "optional-large-applications-and-games",
+    "duplicate-applications",
+    "unneeded-static-libraries",
+    "optional-themes-icons-fonts-and-sample-media",
+    "unneeded-locales-and-documentation"
+  ],
+  "deferred": [
+    "bluetooth-audio-until-beta1-core-is-verified",
+    "printer-and-scanner-support-unless-required-by-test-hardware",
+    "specialist-hardware-firmware-not-needed-for-supported-test-targets",
+    "package-manager-and-graphical-app-manager"
+  ],
+  "non_removable_safety_components": [
+    "storage-drivers-required-to-boot-and-install",
+    "installer-and-recovery-dependencies",
+    "firmware-required-by-supported-test-hardware",
+    "shared-libraries-required-by-included-runtime-components"
+  ]
+}
