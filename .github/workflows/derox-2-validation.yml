@@ -24,6 +24,13 @@ jobs:
         run: python -m unittest -v test_validate_manifest.py
       - name: Validate sample manifest
         run: python v2/tools/validate_manifest.py v2/package/examples/demo-app.json
+      - name: Compile lightweight ISO profile validator
+        run: python -m py_compile v2/tools/validate_iso_profile.py
+      - name: Test lightweight ISO profile
+        working-directory: v2/tools
+        run: python -m unittest -v test_iso_profile.py
+      - name: Validate lightweight ISO profile
+        run: python v2/tools/validate_iso_profile.py v2/build/iso-profile.json
       - name: Compile source-lock tools
         run: python -m py_compile v2/tools/validate_sources.py
       - name: Run source-lock tests
