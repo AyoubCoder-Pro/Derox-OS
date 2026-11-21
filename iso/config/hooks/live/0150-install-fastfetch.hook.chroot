@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+# Fastfetch is not packaged in Debian 12 (Bookworm), so install the official
+# upstream amd64 .deb instead of asking APT to find a nonexistent package.
+VERSION="2.71.0"
+DEB="/tmp/fastfetch-linux-amd64.deb"
+URL="https://github.com/fastfetch-cli/fastfetch/releases/download/${VERSION}/fastfetch-linux-amd64.deb"
+
+trap 'rm -f "$DEB"' EXIT
+curl --fail --location --retry 3 --output "$DEB" "$URL"
+apt install --yes "$DEB"
+fastfetch --version

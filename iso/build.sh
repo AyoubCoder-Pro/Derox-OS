@@ -24,7 +24,7 @@ lb config \
   --mirror-binary-security "http://security.debian.org/debian-security/" \
   --archive-areas "main contrib non-free-firmware" \
   --binary-images iso-hybrid \
-  --bootappend-live "boot=live components username=derox hostname=derox-os locales=en_US.UTF-8 keyboard-layouts=us" \
+  --bootappend-live "boot=live components quiet splash username=derox hostname=derox-os locales=en_US.UTF-8 keyboard-layouts=us" \
   --debian-installer live \
   --iso-application "DEROX OS" \
   --iso-volume "DEROX_OS" \

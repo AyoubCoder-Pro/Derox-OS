@@ -1,0 +1,12 @@
+Window.SetBackgroundTopColor(0.015, 0.012, 0.035);
+Window.SetBackgroundBottomColor(0.015, 0.012, 0.035);
+
+title_image = Image.Text("DEROX OS", Color(0.72, 0.32, 1.0), "Sans Bold 42");
+title_sprite = Sprite(title_image);
+title_sprite.SetX(Window.GetWidth() / 2 - title_image.GetWidth() / 2);
+title_sprite.SetY(Window.GetHeight() / 2 - title_image.GetHeight() / 2 - 24);
+
+tagline_image = Image.Text("BUILD  -  LEARN  -  EXPLORE", Color(0.88, 0.88, 0.94), "Sans 14");
+tagline_sprite = Sprite(tagline_image);
+tagline_sprite.SetX(Window.GetWidth() / 2 - tagline_image.GetWidth() / 2);
+tagline_sprite.SetY(Window.GetHeight() / 2 + 34);
