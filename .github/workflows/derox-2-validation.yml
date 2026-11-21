@@ -72,6 +72,10 @@ jobs:
         run: bash -n v2/rootfs/create-rootfs-skeleton.sh v2/rootfs/test-create-rootfs-skeleton.sh
       - name: Test rootfs skeleton staging
         run: bash v2/rootfs/test-create-rootfs-skeleton.sh
+      - name: Check rootfs runtime checker
+        run: bash -n v2/rootfs/check-rootfs-runtime.sh v2/rootfs/test-check-rootfs-runtime.sh
+      - name: Test rootfs runtime checker
+        run: bash v2/rootfs/test-check-rootfs-runtime.sh
       - name: Check initramfs scripts
         run: bash -n v2/initramfs/create-initramfs.sh v2/initramfs/test-create-initramfs.sh v2/initramfs/install-init.sh v2/initramfs/test-install-init.sh
       - name: Test initramfs archive helper
